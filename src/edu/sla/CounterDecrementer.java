@@ -1,8 +1,8 @@
 package edu.sla;
 
 public class CounterDecrementer implements Runnable {
-    SynchronizedCounter sharedCounter;
-    int decId;
+    private SynchronizedCounter sharedCounter;
+    private int decId;
 
     CounterDecrementer(SynchronizedCounter theCounter, int id) {
         sharedCounter = theCounter;
@@ -12,11 +12,10 @@ public class CounterDecrementer implements Runnable {
     @Override
     public void run() {
         for (int j = 0; j < 10; j++) {
-            while (sharedCounter.value() < 1) {
+            while (!sharedCounter.decrement(decId)) {
                 Thread.currentThread().yield();
             }
-            sharedCounter.decrement(decId);
         }
-        System.out.println("DONE Decrementing " + decId);
+        System.out.println("Decrementer thread " + decId + ": DONE DECREMENTING");
     }
 }

@@ -1,20 +1,22 @@
 package edu.sla;
 
 public class CounterIncrementer implements Runnable {
-    SynchronizedCounter sharedCounter;
+    private SynchronizedCounter sharedCounter;
+    private int myId;
 
-    CounterIncrementer(SynchronizedCounter theCounter) {
+    CounterIncrementer(SynchronizedCounter theCounter, int id) {
+
         sharedCounter = theCounter;
+        myId = id;
     }
 
     @Override
     public void run() {
-        for (int i = 0; i < 8; i++) {
-            while (sharedCounter.value() > 9) {
+        for (int i = 0; i < 15; i++) {
+            while (!sharedCounter.increment(myId)) {
                 Thread.currentThread().yield();
             }
-            sharedCounter.increment();
         }
-        System.out.println("DONE INCREMENTING");
+        System.out.println("Incrementer thread " + String.valueOf(myId) + ": DONE INCREMENTING");
     }
 }

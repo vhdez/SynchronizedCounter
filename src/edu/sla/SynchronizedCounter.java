@@ -7,21 +7,25 @@ public class SynchronizedCounter {
         counter = 0;
     }
 
-    synchronized int value() {
-        return counter;
-    }
+    synchronized boolean increment(int id) {
+        if (counter > 9) {
+            return false;
+        }
 
-    synchronized int increment() {
-        System.out.print("Incrementing counter from " + counter);
+        System.out.print("Incrementer thread " + id +": Incrementing counter from " + counter);
         counter = counter + 1;
         System.out.println(" to " + counter);
-        return counter;
+        return true;
     }
 
-    synchronized int decrement(int id) {
-        System.out.print(id + " Decrementing counter from " + counter);
+    synchronized boolean decrement(int id) {
+        if (counter < 1) {
+            return false;
+        }
+
+        System.out.print("Decrementer thread " + id + ": Decrementing counter from " + counter);
         counter = counter - 1;
         System.out.println(" to " + counter);
-        return counter;
+        return true;
     }
 }
