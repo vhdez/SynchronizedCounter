@@ -1,7 +1,7 @@
 package edu.sla;
 
 public class SynchronizedCounter {
-    private static int counter;
+    private int counter;
 
     SynchronizedCounter() {
         counter = 0;

@@ -9,7 +9,7 @@ public class CounterIncrementer implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < 8; i++) {
             while (sharedCounter.value() > 9) {
                 Thread.currentThread().yield();
             }

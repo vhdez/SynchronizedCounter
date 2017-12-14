@@ -18,12 +18,12 @@ public class Main {
         // tell that thread to start decrementing counter
         decThread1.start();
 
-        Thread decThread2 = new Thread(myDecrementer2);
+//        Thread decThread2 = new Thread(myDecrementer2);
         // tell that thread to start decrementing counter
-        decThread2.start();
+//        decThread2.start();
 
-        Thread decThread3 = new Thread(myDecrementer3);
-        // tell that thread to start decrementing counter
-        decThread3.start();
+//        Thread decThread3 = new Thread(myDecrementer3);
+//        // tell that thread to start decrementing counter
+//        decThread3.start();
     }
 }

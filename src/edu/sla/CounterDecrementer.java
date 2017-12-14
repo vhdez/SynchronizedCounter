@@ -11,7 +11,7 @@ public class CounterDecrementer implements Runnable {
 
     @Override
     public void run() {
-        for (int j = 0; j < 20; j++) {
+        for (int j = 0; j < 10; j++) {
             while (sharedCounter.value() < 1) {
                 Thread.currentThread().yield();
             }
